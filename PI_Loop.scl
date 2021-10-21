@@ -1,0 +1,11 @@
+// FM350-2专用数据块"3502_DB"
+DATA_BLOCK "3502_DB" "FM350-2"
+BEGIN
+    JOB_RD.NO := B#16#64; 
+    MOD_ADR := W#16#3E0; // FM350-2模块地址
+    CH_ADR := DW#16#1F00; // 通道地址，即模块地址乘8
+END_DATA_BLOCK
+
+FUNCTION "PI_Loop" : VOID
+  "PI_Proc"."PI01"(DB_NO := 35); // DB_NO指向"3502_DB"，本例为DB35
+END_FUNCTION
