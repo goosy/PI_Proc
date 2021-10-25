@@ -200,21 +200,21 @@ VAR_INPUT
   DB_NO : INT;   // 350-2模块专用数据块块号
   wDBNO AT DB_NO : WORD;
   equS1 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fFix1 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
+  fix1 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
   equS2 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fFix2 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
+  fix2 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
   equS3 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fFix3 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
+  fix3 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
   equS4 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fFix4 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
+  fix4 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
   equS5 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fFix5 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
+  fix5 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
   equS6 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fFix6 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
+  fix6 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
   equS7 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fFix7 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
+  fix7 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
   equS8 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fFix8 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
+  fix8 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
 END_VAR
 
 VAR_OUTPUT
@@ -240,29 +240,29 @@ VAR_IN_OUT
 END_VAR
 
 VAR
-  flowRef1 : REAL := 0.0;       // 参照流量
-  flowRef2 : REAL := 0.0;       // 参照流量
-  flowRef3 : REAL := 0.0;       // 参照流量
-  flowRef4 : REAL := 0.0;       // 参照流量
-  flowRef5 : REAL := 0.0;       // 参照流量
-  flowRef6 : REAL := 0.0;       // 参照流量
-  flowRef7 : REAL := 0.0;       // 参照流量
-  flowRef8 : REAL := 0.0;       // 参照流量
-  cntRef1 : DINT := 0;       // 参照计数
-  cntRef2 : DINT := 0;       // 参照计数
-  cntRef3 : DINT := 0;       // 参照计数
-  cntRef4 : DINT := 0;       // 参照计数
-  cntRef5 : DINT := 0;       // 参照计数
-  cntRef6 : DINT := 0;       // 参照计数
-  cntRef7 : DINT := 0;       // 参照计数
-  cntRef8 : DINT := 0;       // 参照计数
-  JOB_RD_BUSY : BYTE := B#16#64;   // 切换通道标志
+  flow_ref1 : REAL := 0.0;       // 参照流量
+  flow_ref2 : REAL := 0.0;       // 参照流量
+  flow_ref3 : REAL := 0.0;       // 参照流量
+  flow_ref4 : REAL := 0.0;       // 参照流量
+  flow_ref5 : REAL := 0.0;       // 参照流量
+  flow_ref6 : REAL := 0.0;       // 参照流量
+  flow_ref7 : REAL := 0.0;       // 参照流量
+  flow_ref8 : REAL := 0.0;       // 参照流量
+  cnt_ref1 : DINT := 0;       // 参照计数
+  cnt_ref2 : DINT := 0;       // 参照计数
+  cnt_ref3 : DINT := 0;       // 参照计数
+  cnt_ref4 : DINT := 0;       // 参照计数
+  cnt_ref5 : DINT := 0;       // 参照计数
+  cnt_ref6 : DINT := 0;       // 参照计数
+  cnt_ref7 : DINT := 0;       // 参照计数
+  cnt_ref8 : DINT := 0;       // 参照计数
+  read_channel : BYTE := B#16#64;   // 切换通道标志
   rd_ret : INT;
 END_VAR
 
 VAR_TEMP
-  rawCount : DINT;       // 模块计数
-  newFlow : REAL;      // 计算新累计流量
+  raw_count : DINT;       // 模块计数
+  new_flow : REAL;      // 计算新累计流量
 END_VAR
 
 CONST
@@ -277,85 +277,84 @@ BEGIN
 
   // 模块通道转换,并读取
   IF NOT WORD_TO_BLOCK_DB(wDBNO).DBX3.0 THEN
-    JOB_RD_BUSY:= JOB_RD_BUSY XOR B#16#1; //B#16#64 or B#16#65
+    read_channel:= read_channel XOR B#16#1; //B#16#64 or B#16#65
   END_IF;
-  WORD_TO_BLOCK_DB(wDBNO).DBB2 := JOB_RD_BUSY;
+  WORD_TO_BLOCK_DB(wDBNO).DBB2 := read_channel;
   rd_ret := "CNT2_RD"(DB_NO := wDBNO); 
 
   // 瞬时流量
-  flow_rate1 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD152) * fFix1 / equS1 * factor;
-  flow_rate2 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD160) * fFix2 / equS2 * factor;
-  flow_rate3 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD168) * fFix3 / equS3 * factor;
-  flow_rate4 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD176) * fFix4 / equS4 * factor;
-  flow_rate5 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD184) * fFix5 / equS5 * factor;
-  flow_rate6 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD192) * fFix6 / equS6 * factor;
-  flow_rate7 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD200) * fFix7 / equS7 * factor;
-  flow_rate8 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD208) * fFix8 / equS8 * factor;
+  flow_rate1 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD152) * fix1 / equS1 * factor;
+  flow_rate2 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD160) * fix2 / equS2 * factor;
+  flow_rate3 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD168) * fix3 / equS3 * factor;
+  flow_rate4 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD176) * fix4 / equS4 * factor;
+  flow_rate5 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD184) * fix5 / equS5 * factor;
+  flow_rate6 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD192) * fix6 / equS6 * factor;
+  flow_rate7 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD200) * fix7 / equS7 * factor;
+  flow_rate8 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD208) * fix8 / equS8 * factor;
 
   // 累积流量
-  rawCount := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD148);
-  newFlow := flowRef1 + (rawCount - cntRef1) * fFix1 / equS1;
-  IF (newFlow - flow1) > 1.0 OR (newFlow - flow1) < -1.0 THEN
-    flowRef1 := flow1;
-    cntRef1 := rawCount;
+  raw_count := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD148);
+  new_flow := flow_ref1 + (raw_count - cnt_ref1) * fix1 / equS1;
+  IF (new_flow - flow1) > 1.0 OR (new_flow - flow1) < -1.0 THEN
+    flow_ref1 := flow1;
+    cnt_ref1 := raw_count;
   ELSE
-    flow1 := newFlow;
+    flow1 := new_flow;
   END_IF;    
-  rawCount := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD156);
-  newFlow := flowRef2 + (rawCount - cntRef2) * fFix2 / equS2;
-  IF (newFlow - flow2) > 1.0 OR (newFlow - flow2) < -1.0 THEN
-    flowRef2 := flow2;
-    cntRef2 := rawCount;
+  raw_count := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD156);
+  new_flow := flow_ref2 + (raw_count - cnt_ref2) * fix2 / equS2;
+  IF (new_flow - flow2) > 1.0 OR (new_flow - flow2) < -1.0 THEN
+    flow_ref2 := flow2;
+    cnt_ref2 := raw_count;
   ELSE
-    flow2 := newFlow;
+    flow2 := new_flow;
   END_IF;
-  rawCount := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD164);
-  newFlow := flowRef3 + (rawCount - cntRef3) * fFix3 / equS3;
-  IF (newFlow - flow3) > 1.0 OR (newFlow - flow3) < -1.0 THEN
-    flowRef3 := flow3;
-    cntRef3 := rawCount;
+  raw_count := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD164);
+  new_flow := flow_ref3 + (raw_count - cnt_ref3) * fix3 / equS3;
+  IF (new_flow - flow3) > 1.0 OR (new_flow - flow3) < -1.0 THEN
+    flow_ref3 := flow3;
+    cnt_ref3 := raw_count;
   ELSE
-    flow3 := newFlow;
+    flow3 := new_flow;
   END_IF;
-  rawCount := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD172);
-  newFlow := flowRef4 + (rawCount - cntRef4) * fFix4 / equS4;
-  IF (newFlow - flow4) > 1.0 OR (newFlow - flow4) < -1.0 THEN
-    flowRef4 := flow4;
-    cntRef4 := rawCount;
+  raw_count := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD172);
+  new_flow := flow_ref4 + (raw_count - cnt_ref4) * fix4 / equS4;
+  IF (new_flow - flow4) > 1.0 OR (new_flow - flow4) < -1.0 THEN
+    flow_ref4 := flow4;
+    cnt_ref4 := raw_count;
   ELSE
-    flow4 := newFlow;
+    flow4 := new_flow;
   END_IF;
-  rawCount := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD180);
-  newFlow := flowRef5 + (rawCount - cntRef5) * fFix5 / equS5;
-  IF (newFlow - flow5) > 1.0 OR (newFlow - flow5) < -1.0 THEN
-    flowRef5 := flow5;
-    cntRef5 := rawCount;
+  raw_count := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD180);
+  new_flow := flow_ref5 + (raw_count - cnt_ref5) * fix5 / equS5;
+  IF (new_flow - flow5) > 1.0 OR (new_flow - flow5) < -1.0 THEN
+    flow_ref5 := flow5;
+    cnt_ref5 := raw_count;
   ELSE
-    flow5 := newFlow;
+    flow5 := new_flow;
   END_IF;
-  rawCount := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD188);
-  newFlow := flowRef6 + (rawCount - cntRef6) * fFix6 / equS6;
-  IF (newFlow - flow6) > 1.0 OR (newFlow - flow6) < -1.0 THEN
-    flowRef6 := flow6;
-    cntRef6 := rawCount;
+  raw_count := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD188);
+  new_flow := flow_ref6 + (raw_count - cnt_ref6) * fix6 / equS6;
+  IF (new_flow - flow6) > 1.0 OR (new_flow - flow6) < -1.0 THEN
+    flow_ref6 := flow6;
+    cnt_ref6 := raw_count;
   ELSE
-    flow6 := newFlow;
+    flow6 := new_flow;
   END_IF;
-  rawCount := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD196);
-  newFlow := flowRef7 + (rawCount - cntRef7) * fFix7 / equS7;
-  IF (newFlow - flow7) > 1.0 OR (newFlow - flow7) < -1.0 THEN
-    flowRef7 := flow7;
-    cntRef7 := rawCount;
+  raw_count := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD196);
+  new_flow := flow_ref7 + (raw_count - cnt_ref7) * fix7 / equS7;
+  IF (new_flow - flow7) > 1.0 OR (new_flow - flow7) < -1.0 THEN
+    flow_ref7 := flow7;
+    cnt_ref7 := raw_count;
   ELSE
-    flow7 := newFlow;
+    flow7 := new_flow;
   END_IF;
-  rawCount := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD204);
-  newFlow := flowRef8 + (rawCount - cntRef8) * fFix8 / equS8;
-  IF (newFlow - flow8) > 1.0 OR (newFlow - flow8) < -1.0 THEN
-    flowRef8 := flow8;
-    cntRef8 := rawCount;
+  raw_count := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD204);
+  new_flow := flow_ref8 + (raw_count - cnt_ref8) * fix8 / equS8;
+  IF (new_flow - flow8) > 1.0 OR (new_flow - flow8) < -1.0 THEN
+    flow_ref8 := flow8;
+    cnt_ref8 := raw_count;
   ELSE
-    flow8 := newFlow;
+    flow8 := new_flow;
   END_IF;
-  
 END_FUNCTION_BLOCK
