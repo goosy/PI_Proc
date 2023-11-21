@@ -1,71 +1,71 @@
 TYPE "FM350-2"
-  STRUCT  
-    JOB_WR : STRUCT     // write commands
-      NO : BYTE ; // number
+  STRUCT
+    JOB_WR : STRUCT   // write commands
+      NO : BYTE ;     // number
       BUSY : BOOL ;   // job in working
       DONE : BOOL ;   // job is done
       IMPOSS : BOOL ; // job impossible
       UNKOWN : BOOL ; // job unkown
-    END_STRUCT ;    
-    JOB_RD : STRUCT     // read commands
+    END_STRUCT ;
+    JOB_RD : STRUCT           // read commands
       NO : BYTE  := B#16#64;  // number
-      BUSY : BOOL ;   // job in working
-      DONE : BOOL ;   // job is done
-      IMPOSS : BOOL ; // job impossible
-      UNKOWN : BOOL ; // job unkown
-    END_STRUCT ;    
-    RESERV_0 : ARRAY  [1 .. 3 ] OF WORD  := 3 (W#16#0) ;    // reserved
-    RESERV_1 : WORD ;   // reserved
+      BUSY : BOOL ;           // job in working
+      DONE : BOOL ;           // job is done
+      IMPOSS : BOOL ;         // job impossible
+      UNKOWN : BOOL ;         // job unkown
+    END_STRUCT ;
+    RESERV_0 : ARRAY  [1 .. 3 ] OF WORD  := 3 (W#16#0) ;  // reserved
+    RESERV_1 : WORD ;                                     // reserved
     MOD_ADR : WORD ;    // module address
     CH_ADR : DWORD ;    // channel address
     DS_OFFS : BYTE ;    // data block offset
     RESERV_2 : BYTE ;   // reserved
-    CONTROL_SIGNALS : STRUCT    // control signals
-      BIT0_0 : BOOL ; // reserved
-      BIT0_1 : BOOL ; // reserved
-      BIT0_2 : BOOL ; // reserved
-      BIT0_3 : BOOL ; // reserved
-      BIT0_4 : BOOL ; // reserved
-      BIT0_5 : BOOL ; // reserved
-      BIT0_6 : BOOL ; // reserved
-      BIT0_7 : BOOL ; // reserved
-      CTRL_DQ0 : BOOL ;   // control digital output DQ0
-      CTRL_DQ1 : BOOL ;   // control digital output DQ1
-      CTRL_DQ2 : BOOL ;   // control digital output DQ2
-      CTRL_DQ3 : BOOL ;   // control digital output DQ3
-      CTRL_DQ4 : BOOL ;   // control digital output DQ4
-      CTRL_DQ5 : BOOL ;   // control digital output DQ5
-      CTRL_DQ6 : BOOL ;   // control digital output DQ6
-      CTRL_DQ7 : BOOL ;   // control digital output DQ7
-      SET_DQ0 : BOOL ;    // set digital output DQ0
-      SET_DQ1 : BOOL ;    // set digital output DQ1
-      SET_DQ2 : BOOL ;    // set digital output DQ2
-      SET_DQ3 : BOOL ;    // set digital output DQ3
-      SET_DQ4 : BOOL ;    // set digital output DQ4
-      SET_DQ5 : BOOL ;    // set digital output DQ5
-      SET_DQ6 : BOOL ;    // set digital output DQ6
-      SET_DQ7 : BOOL ;    // set digital output DQ7
-      SW_GATE0 : BOOL ;   // software gate 0
-      SW_GATE1 : BOOL ;   // software gate 1
-      SW_GATE2 : BOOL ;   // software gate 2
-      SW_GATE3 : BOOL ;   // software gate 3
-      SW_GATE4 : BOOL ;   // software gate 4
-      SW_GATE5 : BOOL ;   // software gate 5
-      SW_GATE6 : BOOL ;   // software gate 6
-      SW_GATE7 : BOOL ;   // software gate 7
-      CTRL_DWORD1 : DWORD ;   // reserved
-      CTRL_DWORD2 : DWORD ;   // reserved
-      CTRL_DWORD3 : DWORD ;   // reserved
-    END_STRUCT ;    
+    CONTROL_SIGNALS : STRUCT // control signals
+      BIT0_0 : BOOL ;        // reserved
+      BIT0_1 : BOOL ;        // reserved
+      BIT0_2 : BOOL ;        // reserved
+      BIT0_3 : BOOL ;        // reserved
+      BIT0_4 : BOOL ;        // reserved
+      BIT0_5 : BOOL ;        // reserved
+      BIT0_6 : BOOL ;        // reserved
+      BIT0_7 : BOOL ;        // reserved
+      CTRL_DQ0 : BOOL ;      // control digital output DQ0
+      CTRL_DQ1 : BOOL ;      // control digital output DQ1
+      CTRL_DQ2 : BOOL ;      // control digital output DQ2
+      CTRL_DQ3 : BOOL ;      // control digital output DQ3
+      CTRL_DQ4 : BOOL ;      // control digital output DQ4
+      CTRL_DQ5 : BOOL ;      // control digital output DQ5
+      CTRL_DQ6 : BOOL ;      // control digital output DQ6
+      CTRL_DQ7 : BOOL ;      // control digital output DQ7
+      SET_DQ0 : BOOL ;       // set digital output DQ0
+      SET_DQ1 : BOOL ;       // set digital output DQ1
+      SET_DQ2 : BOOL ;       // set digital output DQ2
+      SET_DQ3 : BOOL ;       // set digital output DQ3
+      SET_DQ4 : BOOL ;       // set digital output DQ4
+      SET_DQ5 : BOOL ;       // set digital output DQ5
+      SET_DQ6 : BOOL ;       // set digital output DQ6
+      SET_DQ7 : BOOL ;       // set digital output DQ7
+      SW_GATE0 : BOOL ;      // software gate 0
+      SW_GATE1 : BOOL ;      // software gate 1
+      SW_GATE2 : BOOL ;      // software gate 2
+      SW_GATE3 : BOOL ;      // software gate 3
+      SW_GATE4 : BOOL ;      // software gate 4
+      SW_GATE5 : BOOL ;      // software gate 5
+      SW_GATE6 : BOOL ;      // software gate 6
+      SW_GATE7 : BOOL ;      // software gate 7
+      CTRL_DWORD1 : DWORD ;  // reserved
+      CTRL_DWORD2 : DWORD ;  // reserved
+      CTRL_DWORD3 : DWORD ;  // reserved
+    END_STRUCT ;
     CHECKBACK_SIGNALS : STRUCT  // checkback signals
-      BIT0_0 : BOOL ; // reserved
+      BIT0_0 : BOOL ;     // reserved
       STS_TFB : BOOL ;    // status test free bit
-      BIT0_2 : BOOL ; // reserved
-      BIT0_3 : BOOL ; // reserved
+      BIT0_2 : BOOL ;     // reserved
+      BIT0_3 : BOOL ;     // reserved
       DATA_ERR : BOOL ;   // data error bit
-      BIT0_5 : BOOL ; // reserved
-      BIT0_6 : BOOL ; // reserved
-      PARA : BOOL ;   // module parametrized
+      BIT0_5 : BOOL ;     // reserved
+      BIT0_6 : BOOL ;     // reserved
+      PARA : BOOL ;       // module parametrized
       STS_CMP0 : BOOL ;   // status compare event 0
       STS_CMP1 : BOOL ;   // status compare event 1
       STS_CMP2 : BOOL ;   // status compare event 2
@@ -126,7 +126,7 @@ TYPE "FM350-2"
       USER_STAT_WORD1 : WORD ;    // user specific status
       USER_STAT_WORD2 : WORD ;    // user specific status
       USER_STAT_WORD3 : WORD ;    // user specific status
-    END_STRUCT ;    
+    END_STRUCT ;
     LOAD_VAL0 : DINT ;  // load value counter 0
     LOAD_VAL1 : DINT ;  // load value counter 1
     LOAD_VAL2 : DINT ;  // load value counter 2
@@ -184,7 +184,7 @@ TYPE "FM350-2"
       BYTE13 : BYTE ; // error counter 5
       BYTE14 : BYTE ; // error counter 6
       BYTE15 : BYTE ; // error counter 7
-    END_STRUCT ;    
+    END_STRUCT ;
   END_STRUCT ;
 END_TYPE
 
@@ -199,79 +199,79 @@ FAMILY:GoosyLib
 VAR_INPUT
   DB_NO : INT;   // 350-2模块专用数据块块号
   wDBNO AT DB_NO : WORD;
-  equS1 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fix1 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
-  equS2 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fix2 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
-  equS3 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fix3 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
-  equS4 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fix4 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
-  equS5 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fix5 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
-  equS6 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fix6 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
-  equS7 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fix7 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
-  equS8 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/立方米
-  fix8 {S7_m_c := 'true'} : REAL := 1.0;       // 修正系数
+  equS1 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/unit
+  fix1 {S7_m_c := 'true'} : REAL := 1.0;        // 修正系数
+  equS2 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/unit
+  fix2 {S7_m_c := 'true'} : REAL := 1.0;        // 修正系数
+  equS3 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/unit
+  fix3 {S7_m_c := 'true'} : REAL := 1.0;        // 修正系数
+  equS4 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/unit
+  fix4 {S7_m_c := 'true'} : REAL := 1.0;        // 修正系数
+  equS5 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/unit
+  fix5 {S7_m_c := 'true'} : REAL := 1.0;        // 修正系数
+  equS6 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/unit
+  fix6 {S7_m_c := 'true'} : REAL := 1.0;        // 修正系数
+  equS7 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/unit
+  fix7 {S7_m_c := 'true'} : REAL := 1.0;        // 修正系数
+  equS8 {S7_m_c := 'true'} : REAL := 10000.0;   // 脉冲当量 个/unit
+  fix8 {S7_m_c := 'true'} : REAL := 1.0;        // 修正系数
 END_VAR
 
 VAR_OUTPUT
-  flow_rate1 {S7_m_c := 'true'} : REAL;       // 瞬时流量
-  flow_rate2 {S7_m_c := 'true'} : REAL;       // 瞬时流量
-  flow_rate3 {S7_m_c := 'true'} : REAL;       // 瞬时流量
-  flow_rate4 {S7_m_c := 'true'} : REAL;       // 瞬时流量
-  flow_rate5 {S7_m_c := 'true'} : REAL;       // 瞬时流量
-  flow_rate6 {S7_m_c := 'true'} : REAL;       // 瞬时流量
-  flow_rate7 {S7_m_c := 'true'} : REAL;       // 瞬时流量
-  flow_rate8 {S7_m_c := 'true'} : REAL;       // 瞬时流量
+  flow_rate1 {S7_m_c := 'true'} : REAL;       // 测量值
+  flow_rate2 {S7_m_c := 'true'} : REAL;       // 测量值
+  flow_rate3 {S7_m_c := 'true'} : REAL;       // 测量值
+  flow_rate4 {S7_m_c := 'true'} : REAL;       // 测量值
+  flow_rate5 {S7_m_c := 'true'} : REAL;       // 测量值
+  flow_rate6 {S7_m_c := 'true'} : REAL;       // 测量值
+  flow_rate7 {S7_m_c := 'true'} : REAL;       // 测量值
+  flow_rate8 {S7_m_c := 'true'} : REAL;       // 测量值
 END_VAR
 
 VAR_IN_OUT
-  flow1 {S7_m_c := 'true'} : REAL;       // 累积流量
-  flow2 {S7_m_c := 'true'} : REAL;       // 累积流量
-  flow3 {S7_m_c := 'true'} : REAL;       // 累积流量
-  flow4 {S7_m_c := 'true'} : REAL;       // 累积流量
-  flow5 {S7_m_c := 'true'} : REAL;       // 累积流量
-  flow6 {S7_m_c := 'true'} : REAL;       // 累积流量
-  flow7 {S7_m_c := 'true'} : REAL;       // 累积流量
-  flow8 {S7_m_c := 'true'} : REAL;       // 累积流量
+  flow1 {S7_m_c := 'true'} : REAL;       // 累积量
+  flow2 {S7_m_c := 'true'} : REAL;       // 累积量
+  flow3 {S7_m_c := 'true'} : REAL;       // 累积量
+  flow4 {S7_m_c := 'true'} : REAL;       // 累积量
+  flow5 {S7_m_c := 'true'} : REAL;       // 累积量
+  flow6 {S7_m_c := 'true'} : REAL;       // 累积量
+  flow7 {S7_m_c := 'true'} : REAL;       // 累积量
+  flow8 {S7_m_c := 'true'} : REAL;       // 累积量
 END_VAR
 
 VAR
-  flow_ref1 : REAL := 0.0;       // 参照流量
-  flow_ref2 : REAL := 0.0;       // 参照流量
-  flow_ref3 : REAL := 0.0;       // 参照流量
-  flow_ref4 : REAL := 0.0;       // 参照流量
-  flow_ref5 : REAL := 0.0;       // 参照流量
-  flow_ref6 : REAL := 0.0;       // 参照流量
-  flow_ref7 : REAL := 0.0;       // 参照流量
-  flow_ref8 : REAL := 0.0;       // 参照流量
-  cnt_ref1 : DINT := 0;       // 参照计数
-  cnt_ref2 : DINT := 0;       // 参照计数
-  cnt_ref3 : DINT := 0;       // 参照计数
-  cnt_ref4 : DINT := 0;       // 参照计数
-  cnt_ref5 : DINT := 0;       // 参照计数
-  cnt_ref6 : DINT := 0;       // 参照计数
-  cnt_ref7 : DINT := 0;       // 参照计数
-  cnt_ref8 : DINT := 0;       // 参照计数
-  read_channel : BYTE := B#16#64;   // 切换通道标志
+  flow_ref1 : REAL := 0.0;        // 参照测量量
+  flow_ref2 : REAL := 0.0;        // 参照测量量
+  flow_ref3 : REAL := 0.0;        // 参照测量量
+  flow_ref4 : REAL := 0.0;        // 参照测量量
+  flow_ref5 : REAL := 0.0;        // 参照测量量
+  flow_ref6 : REAL := 0.0;        // 参照测量量
+  flow_ref7 : REAL := 0.0;        // 参照测量量
+  flow_ref8 : REAL := 0.0;        // 参照测量量
+  cnt_ref1 : DINT := 0;           // 参照累计数
+  cnt_ref2 : DINT := 0;           // 参照累计数
+  cnt_ref3 : DINT := 0;           // 参照累计数
+  cnt_ref4 : DINT := 0;           // 参照累计数
+  cnt_ref5 : DINT := 0;           // 参照累计数
+  cnt_ref6 : DINT := 0;           // 参照累计数
+  cnt_ref7 : DINT := 0;           // 参照累计数
+  cnt_ref8 : DINT := 0;           // 参照累计数
+  read_channel : BYTE := B#16#64; // 切换通道标志
   rd_ret : INT;
 END_VAR
 
 VAR_TEMP
-  raw_count : DINT;       // 模块计数
+  raw_count : DINT;     // 模块计数
   new_flow : REAL;      // 计算新累计流量
 END_VAR
 
 CONST
-  factor := 3.6; // 系数3.6 = 3600(秒数/小时) / 1000(窗口期)
+  factor := 3.6;    // 测量系数 模块原始提供测量单位为 个/窗口时间周期，3.6为转成常用的 个/小时(窗口期为1000*10)
 END_CONST
 
 BEGIN
   //设置模块号
-  "CNT2_CTR"(DB_NO := wDBNO); 
+  "CNT2_CTR"(DB_NO := wDBNO);
   //打开软件门开始计数
   WORD_TO_BLOCK_DB(wDBNO).DBB23 := B#16#FF;
 
@@ -280,9 +280,9 @@ BEGIN
     read_channel:= read_channel XOR B#16#1; //B#16#64 or B#16#65
   END_IF;
   WORD_TO_BLOCK_DB(wDBNO).DBB2 := read_channel;
-  rd_ret := "CNT2_RD"(DB_NO := wDBNO); 
+  rd_ret := "CNT2_RD"(DB_NO := wDBNO);
 
-  // 瞬时流量
+  // 测量值
   flow_rate1 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD152) * fix1 / equS1 * factor;
   flow_rate2 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD160) * fix2 / equS2 * factor;
   flow_rate3 := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD168) * fix3 / equS3 * factor;
@@ -300,7 +300,7 @@ BEGIN
     cnt_ref1 := raw_count;
   ELSE
     flow1 := new_flow;
-  END_IF;    
+  END_IF;
   raw_count := DWORD_TO_DINT(WORD_TO_BLOCK_DB(wDBNO).DBD156);
   new_flow := flow_ref2 + (raw_count - cnt_ref2) * fix2 / equS2;
   IF (new_flow - flow2) > 1.0 OR (new_flow - flow2) < -1.0 THEN
